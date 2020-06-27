@@ -1,5 +1,5 @@
 body {
-  background-color: #E3E0FF;
+  background-color: #e6f7ff;
   margin: 0;
   padding: 0;
 }
@@ -34,15 +34,27 @@ li label span {
 }
 
 .input-field {
+  display: flex;
+  align-items: center;
   margin: 0 auto;
   text-align: center;
   width: 80%;
 }
 
+.input-field i {
+  font-size: 3rem;
+  color: rgb(87, 17, 128);
+  cursor: pointer;
+}
+
 .input-field input {
   margin: 0 auto;
   font-size: 1.5rem;
-  padding: 0.5rem;
+  padding:8px;
+  display:block;
+  border:none;
+  border-bottom:1px solid #ccc;
+  width:100%
 }
 
 .todo {
@@ -50,8 +62,13 @@ li label span {
   text-align: center;
 }
 
-.todo.completed span {
-  text-decoration: line-through;
+.checkmark {
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  color: black;
 }
 
 .todo label {
@@ -59,8 +76,17 @@ li label span {
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
-  background: #64a4e0;
+  background: white;
   padding: 1rem;
+  border-bottom: solid darkblue 5px;
+  transition: all 0.5s;
+}
+
+.todo.completed label {
+  transition: all 0.5s;
+  background: darkblue;
+  border-bottom: solid white 5px;
+  color: white;
 }
 
 .todo i {
