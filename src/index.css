@@ -1,25 +1,29 @@
 * {
-  --color1: rgb(87, 17, 128);
-  --color2: darkblue;
-  --color3: white;
+  --label-color-one: rgb(87, 17, 128);
+  --label-color-two: darkblue;
+  --label-color-three: white;
+  --background-color: FloralWhite;
+  --main-font: Montserrat;
+  --main-font-size: 5rem;
+  --main-container-width: 80%;
 }
 
 body {
-  background-color: FloralWhite;
+  background-color: var(--background-color);
   margin: 0;
   padding: 0;
 }
 
 h1 {
-  font-family: Montserrat;
+  font-family: var(--main-font);
   font-weight: 600;
-  font-size: 5rem;
+  font-size: var(--main-font-size);
   width: 100%;
   text-align: center;
 }
 
 ul {
-  width: 80%;
+  width: var(--main-container-width);
   list-style: none;
   margin: auto;
   margin-top: 1rem;
@@ -27,7 +31,7 @@ ul {
 }
 
 li {
-  color: var(--color1);
+  color: var(--label-color-one);
 }
 
 li label span {
@@ -44,23 +48,23 @@ li label span {
   align-items: center;
   margin: 0 auto;
   text-align: center;
-  width: 80%;
+  width: var(--main-container-width);
 }
 
 .input-field i {
   font-size: 3rem;
-  color: var(--color1);
+  color: var(--label-color-one);
   cursor: pointer;
 }
 
 .input-field input {
   margin: 0 auto;
   font-size: 1.5rem;
-  padding:8px;
-  display:block;
-  border:none;
-  border-bottom:1px solid var(--color3);
-  width:100%
+  padding: 8px;
+  display: block;
+  border: none;
+  border-bottom: 2px solid var(--label-color-one);
+  width: 100%;
 }
 
 .todo {
@@ -73,7 +77,7 @@ li label span {
   left: 0;
   height: 25px;
   width: 25px;
-  background-color: var(--color3);
+  background-color: var(--label-color-three);
   color: black;
 }
 
@@ -82,21 +86,20 @@ li label span {
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
-  background: var(--color3);
+  background: var(--label-color-three);
   padding: 1rem;
-  border-bottom: solid var(--color2) 5px;
+  border-bottom: solid var(--label-color-two) 5px;
   transition: all 0.5s;
 }
 
 .todo.completed label {
   transition: all 0.5s;
-  background: var(--color2);
-  border-bottom: solid var(--color3) 5px;
-  color: var(--color3);
+  background: var(--label-color-two);
+  border-bottom: solid var(--label-color-three) 5px;
+  color: var(--label-color-three);
 }
 
 .todo i {
   float: right;
   z-index: 3;
 }
-

@@ -3,9 +3,9 @@ import TodoItem from './TodoItem'
 
 export default function TodoList({todos}) {
   return (
-    <div className='List'>
+    <div className='list'>
       <ul>
-        {todos.map(item => <TodoItem key={item.id} {...item} />)}
+        {todos.map(({id, title, completed}) => <TodoItem id={id} title={title} completed={completed}/>)}
       </ul>
     </div>
   )

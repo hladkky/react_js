@@ -3,7 +3,7 @@ import TodoList from './TodoList'
 import { Context } from './context'
 import reducer from './reducer'
 
-export default function App() {
+const App = () => {
   const [state, dispatch] = useReducer(reducer,
     JSON.parse(localStorage.getItem('todos') || []))
   const [todoTitle, setTodoTitle] = useState('');
@@ -50,3 +50,5 @@ export default function App() {
     </Context.Provider>
   );
 }
+
+export default App;
