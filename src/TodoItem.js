@@ -1,14 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Context } from './context'
 
 export default function TodoItem({title, id, completed}) {
   const {dispatch} = useContext(Context);
 
-  const cls = ['todo']
+  const [cls, setCls] = useState(['todo']);
 
-  if (completed) {
-    cls.push('completed');
-  }
+  useEffect(() => {
+      console.log(cls, completed)
+      if (completed) {
+        setCls([...cls, 'completed']);
+      }
+      else {
+        setCls([cls[0]])
+      }
+  }, [completed])
 
   return (
     <li className={cls.join(' ')}>
@@ -19,7 +25,7 @@ export default function TodoItem({title, id, completed}) {
           id="checkmark"
           className="checkmark"
           onChange={() => dispatch({
-            type: 'toggle',
+            type: 'TOGGLE',
             payload: id
           })}
         />
@@ -28,7 +34,7 @@ export default function TodoItem({title, id, completed}) {
         <i
           className="material-icons"
           onClick={() => dispatch({
-            type: 'remove',
+            type: 'REMOVE',
             payload: id
           })}
         >

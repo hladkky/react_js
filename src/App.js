@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useState, useEffect, useReducer, useCallback } from 'react'
 import TodoList from './TodoList'
 import { Context } from './context'
 import reducer from './reducer'
@@ -9,19 +9,23 @@ const App = () => {
   const [todoTitle, setTodoTitle] = useState('');
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(state))
+    try {
+      localStorage.setItem('todos', JSON.stringify(state))
+    } catch(e) {
+      console.error(e)
+    }
   }, [state])
 
-  const addTodo = event => {
+  const addTodo = useCallback ((event) => {
     if (event.key === 'Enter' || event.type === 'click') {
       dispatch({
-        type: 'add',
+        type: 'ADD',
         payload: todoTitle
       })
 
       setTodoTitle('');
     }
-  }
+  }, [todoTitle])
 
   return (
     <Context.Provider value={{
