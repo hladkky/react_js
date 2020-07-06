@@ -1,4 +1,4 @@
-import { ADD, TOGGLE, REMOVE } from './constants'
+import { ADD, TOGGLE, REMOVE, EDIT } from './constants'
 
 export default function(state, action) {
     switch(action.type) {
@@ -20,6 +20,13 @@ export default function(state, action) {
             })
         case REMOVE:
             return state.filter(todo => todo.id !== action.payload)
+        case EDIT:
+            return state.map(todo => {
+                if (todo.id === action.payload.id) {
+                    todo.title = action.payload.val
+                }
+                return todo
+            })
         default:
             return state
     }

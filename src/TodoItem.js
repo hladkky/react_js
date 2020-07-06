@@ -1,24 +1,37 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useCallback, useRef } from 'react'
 import { Context } from './context'
 
 export default function TodoItem({title, id, completed}) {
   const {dispatch} = useContext(Context);
 
   const [cls, setCls] = useState(['todo']);
+  const [click, setClick] = useState(true);
+
+  const inputEl = useRef(null);
+
+  const changeMode = useCallback(()=>{
+    setClick(!click);
+  })
 
   useEffect(() => {
-      console.log(cls, completed)
-      if (completed) {
-        setCls([...cls, 'completed']);
-      }
-      else {
-        setCls([cls[0]])
-      }
+    if (completed) {
+      setCls([...cls, 'completed']);
+    }
+    else {
+      setCls([cls[0]])
+    }
   }, [completed])
+
+  useEffect(() => {
+    if (!click) {
+      inputEl.current.focus();
+      inputEl.current.select()
+    }
+  }, [click])
 
   return (
     <li className={cls.join(' ')}>
-      <label>
+      <div className='label'>
         <input
           type="checkbox"
           checked={completed}
@@ -29,7 +42,22 @@ export default function TodoItem({title, id, completed}) {
             payload: id
           })}
         />
-        <span>{title}</span>
+        <div className="spaninput">
+          {
+            click ?
+              <span onClick={changeMode}>
+                {title}
+              </span>
+            :
+              <input value={title}
+                     ref={inputEl}
+                     onBlur={changeMode}
+                     onChange = {event => dispatch({
+                      type: 'EDIT',
+                      payload: {id: id, val: event.target.value}})}
+              ></input>
+          }
+        </div>
 
         <i
           className="material-icons"
@@ -40,7 +68,7 @@ export default function TodoItem({title, id, completed}) {
         >
           delete
         </i>
-      </label>
+      </div>
     </li>
   )
 }

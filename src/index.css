@@ -2,7 +2,8 @@
   --label-color-one: rgb(87, 17, 128);
   --label-color-two: darkblue;
   --label-color-three: white;
-  --background-color: FloralWhite;
+  --label-color-four: black;
+  --background-color: #FFD0AF;
   --main-font: Montserrat;
   --main-font-size: 5rem;
   --main-container-width: 80%;
@@ -34,13 +35,28 @@ li {
   color: var(--label-color-one);
 }
 
-li label span {
+li .label span {
   flex-grow: 1;
   text-align: left;
   padding-left: 1rem;
   font-family: Montserrat;
   font-weight: 300;
   font-size: 2rem;
+  cursor: text;
+}
+
+li .spaninput {
+  width: 100%;
+  text-align: left;
+  z-index: 5;
+}
+
+li .spaninput input {
+  margin: 0 auto;
+  font-size: 1.5rem;
+  padding: 5px;
+  border: none;
+  width: 70%;
 }
 
 .input-field {
@@ -60,7 +76,7 @@ li label span {
 .input-field input {
   margin: 0 auto;
   font-size: 1.5rem;
-  padding: 8px;
+  padding: 10px;
   display: block;
   border: none;
   border-bottom: 2px solid var(--label-color-one);
@@ -68,7 +84,7 @@ li label span {
 }
 
 .todo {
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -78,10 +94,10 @@ li label span {
   height: 25px;
   width: 25px;
   background-color: var(--label-color-three);
-  color: black;
+  color: var(--label-color-four);
 }
 
-.todo label {
+.todo .label {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -89,11 +105,11 @@ li label span {
   background: var(--label-color-three);
   padding: 1rem;
   border-bottom: solid var(--label-color-two) 5px;
-  transition: all 0.5s;
+  transition: background-color 0.5s;
 }
 
-.todo.completed label {
-  transition: all 0.5s;
+.todo.completed .label {
+  transition: background-color 0.5s;
   background: var(--label-color-two);
   border-bottom: solid var(--label-color-three) 5px;
   color: var(--label-color-three);
