@@ -55,6 +55,11 @@ export default function TodoItem({title, id, completed}) {
                      onChange = {event => dispatch({
                       type: 'EDIT',
                       payload: {id: id, val: event.target.value}})}
+                     onKeyPress = {event => {
+                       if (event.key === 'Enter') {
+                         inputEl.current.blur();
+                       }
+                     }}
               ></input>
           }
         </div>
